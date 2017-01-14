@@ -8,7 +8,7 @@ import android.util.Log;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,33 +17,51 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-        SQLiteDatabase bancoDados = openOrCreateDatabase("Aplicativo", MODE_PRIVATE, null);
+            SQLiteDatabase bancoDados = openOrCreateDatabase("Aplicativo", MODE_PRIVATE, null);
 
-        //tabela
-        bancoDados.execSQL("CREATE TABLE IF NOT EXISTS pessoas(nome VACHAR, idade INT(3))");
+            //tabela
+            bancoDados.execSQL("CREATE TABLE IF NOT EXISTS pessoas( id INTEGER PRIMARY KEY AUTOINCREMENT, nome VACHAR, idade INT(4), profissao VACHAR )");
 
-        //inserir dados
-        bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Marcos', 27)");
-        bancoDados.execSQL("INSERT INTO pessoas (nome, idade) VALUES ('Marcela', 17)");
+            //deletar tabela
+            //bancoDados.execSQL("DROP TABLE pessoas");
 
-        //método rawQuery que recupera os dados inseridos na tabela
-        Cursor cursor = bancoDados.rawQuery("SELECT nome, idade FROM pessoas", null);
+            //inserir dados
+            bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Batman', 61, 'playboy')");
+            bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('MulherMaravilha', 549, 'arqueologa')");
+            bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('HomemAranha', 16, 'estudante')");
+            bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Poseidon', 2516, 'DeusDosMares')");
+            bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Seya', 14, 'cavaleiroDeAthena')");
+            bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Goku', 98, 'sayajin')");
+            bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Shiryu', 15, 'cavaleiroDeAthena')");
+            bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Zeus', 5046, 'DeusDosDeuses')");
 
-        //inteiro para recuperar o indice da coluna com o método getColumnUndex, passando apenas o nome da coluna ele recupera o +indice
-        int indiceColunaNome = cursor.getColumnIndex("nome");
-        int indiceColunaIdade = cursor.getColumnIndex("idade");
+            //fazendo update dos dados
+            //bancoDados.execSQL("UPDATE pessoas SET nome = 'MrRobot' WHERE nome = 'Monique'");
 
-        //fazer o cursor voltar para o primeiro índice
-        cursor.moveToFirst();
+            //deletando dados
+            //bancoDados.execSQL("DELETE FROM pessoas WHERE nome = 'Marcos' ");
 
-        while ( cursor != null) {
+            //método rawQuery que recupera os dados inseridos na tabela
+            Cursor cursor = bancoDados.rawQuery("SELECT * FROM pessoas ", null);
 
-            Log.i("RESULTADO - Nome: ", cursor.getString(indiceColunaNome) );
-            Log.i("RESULTADO - Idade: ", cursor.getString(indiceColunaIdade) );
+            //inteiro para recuperar o indice da coluna com o método getColumnUndex, passando apenas o nome da coluna ele recupera o +indice
+            int indiceColunaNome = cursor.getColumnIndex("nome");
+            int indiceColunaIdade = cursor.getColumnIndex("idade");
+            int indiceColunaProfissao = cursor.getColumnIndex("profissao");
+            int indiceColunaId = cursor.getColumnIndex("id");
 
-            cursor.moveToNext();
+            //fazer o cursor voltar para o primeiro índice
+            cursor.moveToFirst();
 
-        }
+            while ( cursor != null) {
+
+                Log.i("RESULTADO - Nome: ", cursor.getString(indiceColunaNome) );
+                Log.i("RESULTADO - Idade: ", cursor.getString(indiceColunaIdade) );
+                Log.i("RESULTADO - Id: ", cursor.getString(indiceColunaId) );
+                Log.i("RESULTADO - Profissao: ", cursor.getString(indiceColunaProfissao) );
+
+                cursor.moveToNext();
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
