@@ -26,7 +26,8 @@ public class  MainActivity extends AppCompatActivity {
             //bancoDados.execSQL("DROP TABLE pessoas");
 
             //inserir dados
-            bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Batman', 61, 'playboy')");
+            /***
+             bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Batman', 61, 'playboy')");
             bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('MulherMaravilha', 549, 'arqueologa')");
             bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('HomemAranha', 16, 'estudante')");
             bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Poseidon', 2516, 'DeusDosMares')");
@@ -34,6 +35,7 @@ public class  MainActivity extends AppCompatActivity {
             bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Goku', 98, 'sayajin')");
             bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Shiryu', 15, 'cavaleiroDeAthena')");
             bancoDados.execSQL("INSERT INTO pessoas (nome, idade, profissao) VALUES ('Zeus', 5046, 'DeusDosDeuses')");
+             */
 
             //fazendo update dos dados
             //bancoDados.execSQL("UPDATE pessoas SET nome = 'MrRobot' WHERE nome = 'Monique'");
